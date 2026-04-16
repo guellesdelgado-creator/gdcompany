@@ -28,9 +28,24 @@
                     <li><a href="javascript:void(0)" onclick="accessCaseStudy()">Estudo de Caso</a></li>
                 </ul>
                 <a href="https://wa.me/44991274335" class="cta-nav" target="_blank">Solicitar Auditoria</a>
+                <button class="mobile-menu-toggle" onclick="toggleMenu()">
+                    <i data-lucide="menu"></i>
+                </button>
             </nav>
         </div>
     </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <button class="close-menu" onclick="toggleMenu()">
+            <i data-lucide="x" size="40"></i>
+        </button>
+        <ul class="mobile-nav-list">
+            <li><a href="#protocolo" onclick="toggleMenu()">Protocolo</a></li>
+            <li><a href="#engenharia" onclick="toggleMenu()">Engenharia</a></li>
+            <li><a href="javascript:void(0)" onclick="accessCaseStudy(); toggleMenu();">Estudo de Caso</a></li>
+            <li><a href="https://wa.me/44991274335" target="_blank" onclick="toggleMenu()">Contato</a></li>
+        </ul>
+    </div>
 
     <main>
         <!-- Hero Section -->
@@ -219,6 +234,19 @@
                 window.location.href = "https://guellesdelgado-creator.github.io/guellesedelgado/estudo-de-caso";
             } else if (password !== null) {
                 alert("Senha incorreta. Acesso negado.");
+            }
+        }
+
+        // Mobile Menu Toggle logic
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+            
+            // Prevent scrolling when menu is open
+            if (menu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
             }
         }
     </script>
