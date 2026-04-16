@@ -28,6 +28,19 @@
 <body class="dual-mode">
 
     <!-- ==========================================
+         CINEMATIC PRELOADER
+         ========================================== -->
+    <div id="gd-preloader">
+        <div class="preloader-content">
+            <img src="Logo%20laranja%20PNG.png" alt="GD Logo">
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
+            <p>Carregando Dados...</p>
+        </div>
+    </div>
+
+    <!-- ==========================================
          DESKTOP STRUCTURE (Cinematic Wide)
          ========================================== -->
     <div id="desktop-structure">
@@ -313,14 +326,30 @@
 
     <!-- COMMON SCRIPTS -->
     <script>
+        // Cinematic Preloader Engine & Reveal Sync
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const preloader = document.getElementById('gd-preloader');
+                if(preloader) {
+                    preloader.classList.add('loaded');
+                    setTimeout(() => preloader.remove(), 1000);
+                }
+                
+                // INICIA AS OPACIDADES APENAS QUANDO A TELA DE LOADING SAI
+                document.querySelectorAll('[data-reveal], .m-v-card, .m-step').forEach(el => obs.observe(el));
+            }, 2000); // 2 second simulated loading for premium effect
+        });
+
         lucide.createIcons();
 
-        // Reveal Animations
+        // Reveal Animations (High Responsiveness - No Jumping)
         const obs = new IntersectionObserver((es) => {
-            es.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('[data-reveal], .m-v-card, .m-step').forEach(el => obs.observe(el));
+            es.forEach(e => { 
+                if(e.isIntersecting && !e.target.classList.contains('active')) { 
+                    e.target.classList.add('active'); 
+                } 
+            });
+        }, { threshold: 0, rootMargin: '0px 0px 25% 0px' });
 
         // Mobile Menu Toggle
         function toggleMMenu() {

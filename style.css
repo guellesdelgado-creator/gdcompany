@@ -8,7 +8,7 @@
     --border-premium: rgba(255, 255, 255, 0.05);
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Montserrat', sans-serif;
-    --transition-cinematic: 1.8s cubic-bezier(0.2, 1, 0.2, 1);
+    --transition-cinematic: 0.9s cubic-bezier(0.2, 1, 0.2, 1);
 }
 
 /* ==========================================
@@ -166,3 +166,66 @@ body { background: var(--bg-dark); color: var(--text-white); font-family: var(--
 .m-footer-minimal { padding: 60px 0; text-align: center; border-top: 1px solid var(--border-premium); }
 .m-footer-minimal img { height: 24px; margin-bottom: 15px; }
 .m-footer-minimal p { font-size: 0.7rem; color: #555; letter-spacing: 0.1em; }
+
+/* ==========================================
+   CINEMATIC PRELOADER (SIMULATED)
+   ========================================== */
+#gd-preloader {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: #050505;
+    z-index: 99999;
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 1s cubic-bezier(0.2, 1, 0.2, 1), visibility 1s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+#gd-preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+
+.preloader-content img {
+    height: 45px;
+    filter: drop-shadow(0 0 15px rgba(255, 107, 0, 0.3));
+    animation: pulseLogo 2s infinite alternate;
+}
+
+.progress-bar-container {
+    width: 200px; height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px; overflow: hidden; position: relative;
+}
+
+.progress-bar {
+    width: 0%; height: 100%;
+    background: var(--acc-orange);
+    box-shadow: 0 0 10px var(--acc-orange);
+    animation: fillProgress 2s cubic-bezier(0.8, 0, 0.2, 1) forwards;
+}
+
+.preloader-content p {
+    color: var(--acc-orange); font-size: 0.65rem; letter-spacing: 0.3em;
+    text-transform: uppercase; font-weight: 600; margin-top: 10px;
+    animation: blinkText 1.5s infinite;
+}
+
+@keyframes pulseLogo {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    100% { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes fillProgress {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+}
+
+@keyframes blinkText {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
