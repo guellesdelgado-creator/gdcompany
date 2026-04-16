@@ -397,6 +397,13 @@ body {
     gap: 40px;
 }
 
+/* Main Navigation Logic */
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
 /* Responsive Cinematic Overhaul */
 @media (max-width: 1024px) {
     .container { padding: 0 40px; }
@@ -408,35 +415,43 @@ body {
 }
 
 @media (max-width: 768px) {
-    .container { padding: 0 24px; }
-    .section-padding { padding: 80px 0; }
-    .section-header { margin-bottom: 60px; }
+    /* Global fixes for Full HD Mobile */
+    html, body { overflow-x: hidden; width: 100%; }
+    .container { padding: 0 20px; }
+    .section-padding { padding: 60px 0; }
+    .section-header { margin-bottom: 50px; }
     .section-header h2 { font-size: 2.2rem; }
-    .hero-title { font-size: 2.5rem; margin-bottom: 20px; }
-    .hero-subtitle { font-size: 1rem; margin-bottom: 35px; }
+    
+    .hero-section { height: 85vh; min-height: 600px; }
+    .hero-title { font-size: clamp(2rem, 10vw, 2.8rem); margin-bottom: 20px; }
+    .hero-subtitle { font-size: 1rem; margin-bottom: 30px; padding: 0 10px; }
+    
+    /* Optimized Video Scaling for Mobile */
+    .background-video { filter: brightness(0.4) saturate(0.7); }
 
-    /* Header Mobile Toggle */
-    .nav-list, .cta-nav { display: none; }
+    /* Header Mobile Toggle Only */
+    .nav-list, .cta-nav { display: none !important; }
     .mobile-menu-toggle { display: block; }
+    .main-header { padding: 15px 0; }
 
     /* Grid Symmetry on Mobile */
-    .grid-cards { grid-template-columns: 1fr; gap: 20px; }
-    .premium-card { padding: 40px 24px; }
-    .premium-card h3 { font-size: 1.6rem; }
-    .premium-card i { width: 44px; height: 44px; margin-bottom: 16px; }
+    .grid-cards { grid-template-columns: 1fr; gap: 15px; }
+    .premium-card { padding: 40px 20px; border-radius: 4px; }
+    .premium-card h3 { font-size: 1.5rem; }
+    .premium-card i { width: 40px; height: 40px; margin-bottom: 12px; }
 
-    .engine-comparison { grid-template-columns: 1fr; padding: 40px 20px; border-radius: 24px; }
-    .comp-col { padding: 40px 0; border-right: none; }
+    .engine-comparison { grid-template-columns: 1fr; padding: 0; border: none; }
+    .comp-col { padding: 50px 20px; border-radius: 4px; margin-bottom: 10px; }
     .comp-col.old { border-bottom: 1px solid var(--border-premium); }
 
     .phases-grid { grid-template-columns: 1fr; }
-    .phase-item { padding: 30px 20px; border: none; border-left: 1px solid var(--acc-orange); margin-bottom: 15px; }
+    .phase-item { padding: 25px 15px; border: none; border-left: 2px solid var(--acc-orange); margin-bottom: 15px; background: rgba(255,255,255,0.01); }
 
-    .cta-inner { padding: 80px 20px; gap: 30px; border-radius: 30px; }
-    .cta-inner h2 { font-size: 2rem; }
+    .cta-inner { padding: 80px 20px; gap: 25px; border-radius: 4px; }
+    .cta-inner h2 { font-size: 1.8rem; }
     
-    .hero-actions { flex-direction: column; width: 100%; gap: 12px; }
-    .btn-primary, .btn-secondary { width: 100%; text-align: center; padding: 18px 24px; }
+    .hero-actions { flex-direction: column; width: 100%; gap: 15px; padding: 0 20px; }
+    .btn-primary, .btn-secondary { width: 100%; text-align: center; padding: 20px 24px; font-size: 0.75rem; }
 }
 
 /* Mobile Menu Elements */
@@ -456,7 +471,7 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: var(--bg-dark);
+    background: #050505;
     z-index: 2000;
     display: flex;
     flex-direction: column;
@@ -477,7 +492,7 @@ body {
 }
 
 .mobile-nav-list li {
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s, transform 0.5s;
@@ -490,11 +505,11 @@ body {
 
 .mobile-nav-list a {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--text-white);
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
 }
 
 .close-menu {
