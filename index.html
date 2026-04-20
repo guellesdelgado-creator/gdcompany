@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GD | Engenharia de Faturamento para Cirurgia Pl&aacute;stica</title>
+    <title>GD | Engenharia de Faturamento para Cirurgia Pl&aacute;stica (Tema Claro)</title>
     
     <!-- Cinematic Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-white.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
@@ -62,7 +62,7 @@
 
         <main>
             <section class="hero-section">
-                <video autoplay loop muted playsinline class="background-video" id="heroVideoDesktop">
+                <video loop muted playsinline class="background-video" id="heroVideoDesktop">
                     <source src="Video Project 10.mp4" type="video/mp4">
                 </video>
                 <div class="video-overlay"></div>
@@ -220,7 +220,7 @@
 
         <main>
             <section class="m-hero">
-                <video autoplay loop muted playsinline class="m-video">
+                <video loop muted playsinline class="m-video" id="heroVideoMobile">
                     <source src="Video Project 10.mp4" type="video/mp4">
                 </video>
                 <div class="m-hero-overlay"></div>
@@ -337,6 +337,12 @@
                 
                 // INICIA AS OPACIDADES APENAS QUANDO A TELA DE LOADING SAI
                 document.querySelectorAll('[data-reveal], .m-v-card, .m-step').forEach(el => obs.observe(el));
+
+                // INICIA OS VÍDEOS SINCRONIZADOS COM A ABERTURA DA HERO
+                const dVideo = document.getElementById('heroVideoDesktop');
+                const mVideo = document.getElementById('heroVideoMobile');
+                if (dVideo) dVideo.play();
+                if (mVideo) mVideo.play();
             }, 2000); // 2 second simulated loading for premium effect
         });
 
